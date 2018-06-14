@@ -1,0 +1,37 @@
+<div id="todoapp">
+  <h1>{{head_title}}</h1>
+  <input id="new-todo" #box placeholder="What needs to be done?" [(ngModel)]="newTodoText" autofocus="" (keyup.enter)="addTodo(box.value)">
+  
+  <div id="main" >
+    <input id="toggle-all" type="checkbox" *ngIf="todoStore && todoStore.todos.length" #toggleall [checked]="todoStore.allCompleted()" (click)="todoStore.setAllTo(toggleall.checked)">
+    <label for="toggle-all">Mark all as complete</label>
+    <ul id="todo-list">
+      <li *ngFor="let todo of todoStore.todos | myfilter:filterargs" [class.completed]="todo.completed" [class.editing]="todo.editing">
+        <div class="view">
+          <input class="toggle" type="checkbox" [checked]="todo.completed" (click)="toggleCompletion(todo)">
+          <label (dblclick)="editTodo(todo)">{{todo._title}}</label>
+          <button class="destroy" (click)="remove(todo)"></button>
+        </div>
+        <input class="edit" *ngIf="todo.editing" [value]="todo._title" #editedtodo (blur)="stopEditing(todo, editedtodo.value)" (keyup.enter)="updateEditing(todo, editedtodo.value)" (keyup.escape)="cancelEditing(todo)">
+      </li>
+    </ul>
+  </div>
+  
+  <div id="footer" >
+    <span id="todo-count"><strong>{{todoStore.getRemaining().length}}</strong> {{todoStore.getRemaining().length == 1 ? 'item' : 'items'}} left</span>
+    <ul id="filters">
+      <li>
+        <a [class.selected]="clickAll" (click)="checkOnclick('all')" href="#/">All</a>
+      </li>
+      <li>
+        <a [class.selected]="clickActive" (click)="checkOnclick('active')" href="#/active">Active</a>
+      </li>
+      <li>
+        <a [class.selected]="clickCompleted" (click)="checkOnclick('completed')" href="#/completed">Completed</a>
+      </li>
+    </ul>
+    <button id="clear-completed" *ngIf="todoStore.getCompleted().length > 0" (click)="removeCompleted()">Clear Completed</button>
+  </div>
+
+</div>
+
