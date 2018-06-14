@@ -11,7 +11,6 @@ export class MyFilterPipe implements PipeTransform {
         if (!items || !filter) {  
             return items;  
         }  
-        //debugger;
         return filter.all ? items : items.filter((i) => {return i.completed === filter.completed;})
     }  
 }  
