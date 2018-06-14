@@ -8,11 +8,13 @@ import { Todo, TodoStore } from '../todo.service';
 })
 export class TodoComponent implements OnInit {
 
-	head_title = 'todos';
-  	todoStore: TodoStore;
-	newTodoText = '';
-	filterargs = {};
-	clickCompleted;clickActive;clickAll;
+	public head_title = 'todos';
+  	public todoStore: TodoStore;
+	public newTodoText = '';
+	public filterargs = {};
+	public clickCompleted: boolean;
+	public clickActive: boolean;
+	public clickAll: boolean;
 
 	ngOnInit() {
 	}
