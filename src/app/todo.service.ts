@@ -34,7 +34,6 @@ export class TodoStore {
 	}
 
 	updateStore() {
-		//localStorage.setItem('all-todos', localStorage.getItem('todos'));
 		localStorage.setItem('todos', JSON.stringify(this.todos));
 	}
 

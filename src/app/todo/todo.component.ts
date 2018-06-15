@@ -33,7 +33,6 @@ export class TodoComponent implements OnInit {
 		this.todoStore.add(this.newTodoText);
 		this.newTodoText = '';
 		}
-		//this.checkOnclick('all');
 	}
   
   	private stopEditing(todo: Todo, editedTitle: string) {
@@ -74,7 +73,6 @@ export class TodoComponent implements OnInit {
 	}
 
 	public checkOnclick(status: string) {
-		//console.log(status);
 		switch(status) {
 			case 'completed': { 
 				this.clickCompleted=true;this.clickActive=false;this.clickAll=false;
